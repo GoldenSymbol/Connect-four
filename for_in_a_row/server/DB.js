@@ -4,7 +4,7 @@ let conn = mysql.createConnection({
     host: "localhost",
     user: "root",
     password: "1234",
-    database: "connect4"
+    database: "connect4_db"
 })
 conn.connect((err)=>{
     if(err){
