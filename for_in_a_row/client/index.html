@@ -2,12 +2,76 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <title>Connect 4</title>
+    <style>
+      :root {
+        --cell-size: 50px;
+        --gap: 6px;
+      }
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        justify-content: flex-start;
+        background-color: #f0f0f0;
+        align-items: center;
+        display: flex;
+        padding: 24px;
+        direction: rtl;
+      }
+      .cotainter {
+        text-align: center;
+        max-width: 760px;
+        margin: 100%;
+      }
+      #room {width: 200px; margin-left: 8px; }
+      #join {cursor: pointer; }
+      #gmae {margin-top: 18px; }
+      #board {
+        display: inline-block;
+        margin-top: 12px;
+        background: #0b3b66;
+        padding: var(--gap);
+        border-radius: 8px;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+      }
+      .row { display: flex; }
+      .cell {
+        width: var(--cell-size);
+        height: var(--cell-size);
+        margin: 0 calc(var(--gap) / 2);
+        border-radius: 50%;
+        background: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: inset 0 -4px 8px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        user-select: none;
+      }
+      .cell.p1 { background: radial-gradient(circle at 30% 30%, #ffd6d6, #ff8a8a); }
+      .cell.p2 { background: radial-gradient(circle at 30% 30%, #d7eaff, #5fa8ff); }
+      #turnDisplay {margin-top: 12px; font-weight: 600; }
+      #winner {margin-top: 10px; color: #0a7a00; font-size: 18px; font-weight: 700;}
+      .hidden { display: none; }
+    </style>
   </head>
   <body>
-    <div id="app"></div>
+    <div class="container">
+      <h1>Connect 4</h1>
+
+      <div id = "lobby">
+        <input id="room" placeholder="code room: room1" />
+        <button id="join">Join Room</button>
+      </div>
+
+      <div id="game" class="hidden">
+        <h2 id="roomDisplay"></h2>
+        <p id="turnDisplay"></p>
+        <div id="board" aria-hidden = "false"></div>
+        <h3 id="winner"></h3>
+      </div>
+    </div>
+    
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>
