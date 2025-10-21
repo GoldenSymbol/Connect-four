@@ -1,6 +1,6 @@
-require('dotnev').config();
+require('dotenv').config();
 const express = require('express');
-const db = require('./db');
+const db = require('./DB');
 const app = express();
 app.use(express.json());
 
@@ -9,7 +9,7 @@ app.post('/games', async (req, res) => {
     const {code} = req.body;
     try {
         const [result] = await db.execute(
-            "INSERT INTO games (code, board, turn) VALUES (?, ?, ?)", [code, JSON.stringify(Array(6).fill().map(()=>Array(7),fill(0))), 1]);
+            "INSERT INTO games (code, board, turn) VALUES (?, ?, ?)", [code, JSON.stringify(Array(6).fill().map(() => Array(7).fill(0))), 1]);
         res.status(201).json({message: "Game created", code});
     } catch (error) {
         res.status(500).json({error: error.message});
@@ -17,7 +17,7 @@ app.post('/games', async (req, res) => {
 });
 
 //קבלת מצב המשחק
-app.get('/games/:code', async (req, res) => {
+app.get('/games/:code/move', async (req, res) => {
     const {code} = req.params;
     try {
         const [rows] = await db.execute("SELECT * FROM games WHERE code = ?", [code]);

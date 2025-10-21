@@ -1,5 +1,5 @@
-create DATABASE if not exists connect4;
-use connect4;
+create DATABASE if not exists connect4_db;
+use connect4_db;
 
 create table if not exists games (
 	id int auto_increment primary key,
